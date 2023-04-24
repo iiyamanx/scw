@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} が Jtest の静的解析を実行
 on: push
 jobs:                                                                             #各ジョブの詳細を記載する
   jtest:                                                                          #ジョブ名
-    runs-on: [self-hosted,Windows]                                                #実行したい環境のタグ名、WindowsはPowerShellで実行
+    runs-on: windows-2022                                               #実行したい環境のタグ名、WindowsはPowerShellで実行
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
