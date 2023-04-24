@@ -1,0 +1,24 @@
+name: PUSH で実行
+run-name: ${{ github.actor }} が Jtest の静的解析を実行
+on: push
+jobs:                                                                             #各ジョブの詳細を記載する
+  jtest:                                                                          #ジョブ名
+    runs-on: [self-hosted,Windows]                                                #実行したい環境のタグ名、WindowsはPowerShellで実行
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - run: pwd
+      - run: ./jtestcli.bat
+      
+      - name: Secure Code Warrior の学習コンテンツを SARIF に追記
+        uses: SecureCodeWarrior/github-action-add-sarif-contextual-training@v1.08
+        with:
+          inputSarifFile: report.sarif
+          outputSarifFile: report.processed.sarif
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+        
+      - name: GitHub Code Scanning に結果をアップロード
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: report.processed.sarif
