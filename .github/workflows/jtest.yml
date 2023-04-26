@@ -14,11 +14,11 @@ jobs:                                                                           
       - name: Secure Code Warrior の学習コンテンツを SARIF に追記
         uses: SecureCodeWarrior/github-action-add-sarif-contextual-training@v1.08
         with:
-          inputSarifFile: report.sarif
-          outputSarifFile: report.processed.sarif
+          inputSarifFile: End2EndSOAP/report.sarif
+          outputSarifFile: End2EndSOAP/report.processed.sarif
           githubToken: ${{ secrets.GITHUB_TOKEN }}
         
       - name: GitHub Code Scanning に結果をアップロード
         uses: github/codeql-action/upload-sarif@v2
         with:
-          sarif_file: report.processed.sarif
+          sarif_file: End2EndSOAP/report.processed.sarif
