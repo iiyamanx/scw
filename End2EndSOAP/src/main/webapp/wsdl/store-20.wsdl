@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://store.examples.soap.webtool" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://store.examples.soap.webtool" xmlns:intf="http://store.examples.soap.webtool" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDLはApache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)によって生成されました / [en]-(WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT))-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://store.examples.soap.webtool" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="confirm">
+    <complexType/>
+   </element>
+   <element name="confirmResponse">
+    <complexType>
+     <sequence>
+      <element name="confirmReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="placeOrder">
+    <complexType>
+     <sequence>
+      <element name="itemId" type="xsd:int"/>
+      <element name="count" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="placeOrderResponse">
+    <complexType>
+     <sequence>
+      <element name="placeOrderReturn" type="impl:Order"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Item">
+    <sequence>
+     <element name="id" type="xsd:int"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+     <element name="price" type="xsd:float"/>
+     <element name="stockQuantity" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="Order">
+    <sequence>
+     <element name="cartId" type="xsd:int"/>
+     <element name="item" nillable="true" type="impl:Item"/>
+     <element name="orderNumber" type="xsd:int"/>
+     <element name="quantity" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <element name="removeOrder">
+    <complexType>
+     <sequence>
+      <element name="orderNumber" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removeOrderResponse">
+    <complexType>
+     <sequence>
+      <element name="removeOrderReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getItemByTitle">
+    <complexType>
+     <sequence>
+      <element name="title" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getItemByTitleResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getItemByTitleReturn" type="impl:Book"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_string">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Book">
+    <complexContent>
+     <extension base="impl:Item">
+      <sequence>
+       <element name="ISBN" nillable="true" type="xsd:string"/>
+       <element name="authors" nillable="true" type="impl:ArrayOf_xsd_string"/>
+       <element name="description" nillable="true" type="xsd:string"/>
+       <element name="publicationDate" nillable="true" type="xsd:dateTime"/>
+       <element name="publisher" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="getItemById">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getItemByIdResponse">
+    <complexType>
+     <sequence>
+      <element name="getItemByIdReturn" type="impl:Book"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getPendingOrder">
+    <complexType>
+     <sequence>
+      <element name="cart_id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getPendingOrderResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getPendingOrderReturn" type="impl:Order"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addNewItem">
+    <complexType>
+     <sequence>
+      <element name="book" type="impl:Book"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addNewItemResponse">
+    <complexType>
+     <sequence>
+      <element name="addNewItemReturn" type="impl:Book"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getItemByTitleResponse">
+
+      <wsdl:part element="impl:getItemByTitleResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="placeOrderRequest">
+
+      <wsdl:part element="impl:placeOrder" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getItemByTitleRequest">
+
+      <wsdl:part element="impl:getItemByTitle" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getItemByIdResponse">
+
+      <wsdl:part element="impl:getItemByIdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeOrderRequest">
+
+      <wsdl:part element="impl:removeOrder" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="confirmRequest">
+
+      <wsdl:part element="impl:confirm" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeOrderResponse">
+
+      <wsdl:part element="impl:removeOrderResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addNewItemResponse">
+
+      <wsdl:part element="impl:addNewItemResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPendingOrderRequest">
+
+      <wsdl:part element="impl:getPendingOrder" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addNewItemRequest">
+
+      <wsdl:part element="impl:addNewItem" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getItemByIdRequest">
+
+      <wsdl:part element="impl:getItemById" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPendingOrderResponse">
+
+      <wsdl:part element="impl:getPendingOrderResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="placeOrderResponse">
+
+      <wsdl:part element="impl:placeOrderResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="confirmResponse">
+
+      <wsdl:part element="impl:confirmResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Cart">
+
+      <wsdl:operation name="confirm">
+
+         <wsdl:input message="impl:confirmRequest" name="confirmRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:confirmResponse" name="confirmResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="placeOrder">
+
+         <wsdl:input message="impl:placeOrderRequest" name="placeOrderRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:placeOrderResponse" name="placeOrderResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeOrder">
+
+         <wsdl:input message="impl:removeOrderRequest" name="removeOrderRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:removeOrderResponse" name="removeOrderResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getItemByTitle">
+
+         <wsdl:input message="impl:getItemByTitleRequest" name="getItemByTitleRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getItemByTitleResponse" name="getItemByTitleResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getItemById">
+
+         <wsdl:input message="impl:getItemByIdRequest" name="getItemByIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getItemByIdResponse" name="getItemByIdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPendingOrder">
+
+         <wsdl:input message="impl:getPendingOrderRequest" name="getPendingOrderRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getPendingOrderResponse" name="getPendingOrderResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addNewItem">
+
+         <wsdl:input message="impl:addNewItemRequest" name="addNewItemRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addNewItemResponse" name="addNewItemResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="CartSoapBinding" type="impl:Cart">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="confirm">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="confirmRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="confirmResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="placeOrder">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="placeOrderRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="placeOrderResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeOrder">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeOrderRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeOrderResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getItemByTitle">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getItemByTitleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getItemByTitleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getItemById">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getItemByIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getItemByIdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPendingOrder">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPendingOrderRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPendingOrderResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addNewItem">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addNewItemRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addNewItemResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="CartService">
+
+      <wsdl:port binding="impl:CartSoapBinding" name="Cart">
+
+         <wsdlsoap:address location="http://ws1.parasoft.com:8080/BookStoreSOAP/services/Cart"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
